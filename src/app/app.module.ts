@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import {AuthGuard} from './Services/auth-guard.service';
+import {AuthService} from './Services/auth.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'users', component: UsersListComponent },
+  { path: 'users', component: UsersListComponent , canActivate: [AuthGuard]},
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -29,7 +31,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [AuthGuard, AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
