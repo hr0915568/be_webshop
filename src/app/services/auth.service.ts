@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Router} from '@angular/router';
 
 @Injectable()
-export class AuthService {
+export class AuthService{
 
   // Create a stream of logged in status to communicate throughout app
   loggedIn: boolean;
@@ -11,7 +11,7 @@ export class AuthService {
 
   constructor(private router: Router) {
     // If authenticated, set local profile property and update login status subject
-    if (this.authenticated) {
+    if (this.authenticated || localStorage.getItem('loggedIn')) {
       this.setLoggedIn(true);
     }
   }
@@ -22,8 +22,9 @@ export class AuthService {
     this.loggedIn = value;
   }
 
-  login() {
+  login(username: string, password: string) {
    this.loggedIn = true;
+    localStorage.setItem('loggedIn', '1');
   }
 
   handleAuth() {
@@ -38,14 +39,24 @@ export class AuthService {
     this.setLoggedIn(true);
   }
 
+  relogin() {
+    if (localStorage.getItem('loggedIn')) {
+      this.loggedIn = true;
+    }
+
+    return this.loggedIn;
+  }
+
   logout() {
     this.router.navigate(['/']);
     this.setLoggedIn(false);
+    localStorage.clear();
   }
 
   get authenticated() {
-    // Check if there's an unexpired access token
-    return false;
+
+    return this.loggedIn;
   }
+
 
 }
