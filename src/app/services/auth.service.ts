@@ -1,15 +1,18 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Router} from '@angular/router';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import 'rxjs/add/operator/map';
+import {RequestOptions} from "@angular/http";
 
 @Injectable()
-export class AuthService{
+export class AuthService {
 
   // Create a stream of logged in status to communicate throughout app
   loggedIn: boolean;
   loggedIn$ = new BehaviorSubject<boolean>(this.loggedIn);
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient) {
     // If authenticated, set local profile property and update login status subject
     if (this.authenticated || localStorage.getItem('loggedIn')) {
       this.setLoggedIn(true);
@@ -23,8 +26,22 @@ export class AuthService{
   }
 
   login(username: string, password: string) {
-   this.loggedIn = true;
-    localStorage.setItem('loggedIn', '1');
+
+    const body = new HttpParams()
+      .set('username', username)
+      .set('password', password);
+
+    return this.http.post('http://localhost:9000/admin/login', body.toString(),
+      {
+        responseType: 'text',
+        headers: new HttpHeaders()
+          .set('Content-type', 'application/x-www-form-urlencoded')
+      }
+      )
+      .map((response: Response) => {
+        localStorage.setItem('loggedIn', '1');
+      });
+
   }
 
   handleAuth() {

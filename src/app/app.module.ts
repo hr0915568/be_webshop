@@ -11,6 +11,7 @@ import {AuthService} from './services/auth.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SiteLayoutComponent} from './_layout/site-layout/site-layout.component';
 import {SecureLayoutComponent} from './_layout/secure-layout/secure-layout.component';
+import {HttpClientModule} from '@angular/common/http';
 
 const appRoutes: Routes = [
   // Site routes goes here
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,                               // <========== Add this line!
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
