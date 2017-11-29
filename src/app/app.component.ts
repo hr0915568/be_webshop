@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from './services/auth.service';
-
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,7 +19,7 @@ export class AppComponent implements  OnInit{
   ngOnInit() {
 
     if (this.authenticationService.authenticated || this.authenticationService.relogin()) {
-      this.router.navigate(['users']);
+      this.router.navigate(['dashboard']);
       return;
     }
 

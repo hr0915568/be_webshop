@@ -12,6 +12,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SiteLayoutComponent} from './_layout/site-layout/site-layout.component';
 import {SecureLayoutComponent} from './_layout/secure-layout/secure-layout.component';
 import {HttpClientModule} from '@angular/common/http';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CustomersComponent } from './customers/customers.component';
+import { ProductsComponent } from './products/products.component';
+import { OrdersComponent } from './orders/orders.component';
+import { InvoicesComponent } from './invoices/invoices.component';
+import {CustomerService} from "./services/customer.service";
+
 
 const appRoutes: Routes = [
   // Site routes goes here
@@ -27,6 +34,11 @@ const appRoutes: Routes = [
     component: SecureLayoutComponent,
     children: [
       { path: 'users', component: UsersListComponent, canActivate: [AuthGuard] },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+      { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard] },
+      { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
+      { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
+      { path: 'invoices', component: InvoicesComponent, canActivate: [AuthGuard] },
     ]
   },
   { path: '**', component: PageNotFoundComponent }
@@ -41,7 +53,12 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     UsersListComponent,
     SecureLayoutComponent,
-    SiteLayoutComponent
+    SiteLayoutComponent,
+    DashboardComponent,
+    CustomersComponent,
+    ProductsComponent,
+    OrdersComponent,
+    InvoicesComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +70,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [AuthGuard, AuthService ],
+  providers: [AuthGuard, AuthService, CustomerService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

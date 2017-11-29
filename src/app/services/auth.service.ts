@@ -40,6 +40,7 @@ export class AuthService {
       )
       .map((response: Response) => {
         localStorage.setItem('loggedIn', '1');
+        this.loggedIn = true;
       });
 
   }
@@ -65,9 +66,9 @@ export class AuthService {
   }
 
   logout() {
-    this.router.navigate(['/']);
-    this.setLoggedIn(false);
     localStorage.clear();
+    console.log('cleared');
+    this.setLoggedIn(false);
   }
 
   get authenticated() {

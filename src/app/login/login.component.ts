@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(
     data => {
-      this.router.navigate([this.returnUrl]);
+      localStorage.setItem('loggedIn', '1');
+      this.router.navigate(['dashboard']);
       },
       error => {
         this.router.navigate(['login']);
