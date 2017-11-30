@@ -31,14 +31,15 @@ export class AuthService {
       .set('username', username)
       .set('password', password);
 
-    return this.http.post('http://localhost:9000/admin/login', body.toString(),
+    return this.http.post('http://api.hrwebshop.tk/admin/login', body.toString(),
       {
         responseType: 'text',
+        withCredentials: true,
         headers: new HttpHeaders()
           .set('Content-type', 'application/x-www-form-urlencoded')
       }
       )
-      .map((response: Response) => {
+      .map((response) => {
         localStorage.setItem('loggedIn', '1');
         this.loggedIn = true;
       });

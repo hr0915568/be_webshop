@@ -1,18 +1,29 @@
-<table>
-  <thead>
-  <tr >
-    <th>id</th>
-    <th>email</th>
-    <th>firstname</th>
-    <th>lastname</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let customer of customers">
-    <td>{{customer.id}}</td>
-    <td>{{customer.email}}</td>
-    <td>{{customer.firstname}}</td>
-    <td>{{customer.lastname}}</td>
-  </tr>
-  </tbody>
-</table>
+<div id="hoverable-table">
+  <h4 class="header">Customers</h4>
+  <div class="row">
+    <div class="col s12">
+
+    </div>
+    <div class="col s12">
+      <table class="highlight">
+        <thead>
+        <tr >
+          <th>id</th>
+          <th>email</th>
+          <th>firstname</th>
+          <th>lastname</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let customer of customers" routerLink="/customer/{{customer.id}}">
+          <td>{{customer.id}}</td>
+          <td>{{customer.email}}</td>
+          <td>{{customer.firstname}}</td>
+          <td>{{customer.lastname}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

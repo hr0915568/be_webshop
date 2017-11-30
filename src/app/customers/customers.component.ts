@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {Customer} from "../models/customer";
 import {Observable} from "rxjs/Observable";
 import {catchError, tap} from "rxjs/operators";
@@ -11,7 +11,7 @@ import {CustomerService} from "../services/customer.service";
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.css']
 })
-export class CustomersComponent implements OnInit {
+export class CustomersComponent implements OnInit, AfterContentInit {
 
   customers: Customer[] = [];
 
@@ -24,6 +24,9 @@ export class CustomersComponent implements OnInit {
       .subscribe(customers => this.customers = customers);
   }
 
+  ngAfterContentInit()
+  {
 
+  }
 
 }

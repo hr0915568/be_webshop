@@ -18,6 +18,8 @@ import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import {CustomerService} from "./services/customer.service";
+import {ProductService} from "./services/product.service";
+import { CustomerComponent } from './customer/customer.component';
 
 
 const appRoutes: Routes = [
@@ -36,6 +38,7 @@ const appRoutes: Routes = [
       { path: 'users', component: UsersListComponent, canActivate: [AuthGuard] },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard] },
+      { path: 'customer/:id', component: CustomerComponent, canActivate: [AuthGuard] },
       { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
       { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
       { path: 'invoices', component: InvoicesComponent, canActivate: [AuthGuard] },
@@ -58,7 +61,8 @@ const appRoutes: Routes = [
     CustomersComponent,
     ProductsComponent,
     OrdersComponent,
-    InvoicesComponent
+    InvoicesComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +74,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [AuthGuard, AuthService, CustomerService ],
+  providers: [AuthGuard, AuthService, CustomerService, ProductService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
