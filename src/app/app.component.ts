@@ -17,13 +17,12 @@ export class AppComponent implements  OnInit{
   ) { }
 
   ngOnInit() {
-    // @todo this method does not work.
-    // if (this.authenticationService.authenticated || this.authenticationService.relogin()) {
-    //   this.router.navigate(['dashboard']);
-    //   return;
-    // }
-    //
-    //
-    // this.router.navigate(['login']);
+    if (this.authenticationService.authenticated || this.authenticationService.relogin()) {
+      this.router.navigate(['dashboard']);
+      return;
+    }
+
+
+    this.router.navigate(['login']);
   }
 }
