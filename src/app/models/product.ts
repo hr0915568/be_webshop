@@ -5,4 +5,5 @@ export class Product
   description: string;
   price: number;
   viewed: number;
+  categories_id: number;
 }

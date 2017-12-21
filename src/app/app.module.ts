@@ -20,7 +20,9 @@ import { InvoicesComponent } from './invoices/invoices.component';
 import {CustomerService} from "./services/customer.service";
 import {ProductService} from "./services/product.service";
 import { CustomerComponent } from './customer/customer.component';
-
+import { ProductComponent } from './product/product.component';
+import {MatSelectModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   // Site routes goes here
@@ -39,6 +41,7 @@ const appRoutes: Routes = [
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard] },
       { path: 'customer/:id', component: CustomerComponent, canActivate: [AuthGuard] },
+      { path: 'product/:id', component: ProductComponent, canActivate: [AuthGuard] },
       { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
       { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
       { path: 'invoices', component: InvoicesComponent, canActivate: [AuthGuard] },
@@ -62,13 +65,16 @@ const appRoutes: Routes = [
     ProductsComponent,
     OrdersComponent,
     InvoicesComponent,
-    CustomerComponent
+    CustomerComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,                               // <========== Add this line!
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only

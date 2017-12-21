@@ -1,9 +1,12 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
-import {catchError, tap} from "rxjs/operators";
-import {of} from "rxjs/observable/of";
-import {Product} from "../models/product";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {catchError, tap} from 'rxjs/operators';
+import {of} from 'rxjs/observable/of';
+import {Product} from '../models/product';
+import 'rxjs/add/operator/switchMap';
+import {Customer} from '../models/customer';
+
 @Injectable()
 export class ProductService {
 
@@ -37,4 +40,37 @@ export class ProductService {
       return of(result as T);
     };
   }
+
+  getProductsById(id: number): Observable<Product> {
+    const url = 'http://api.hrwebshop.tk/admin/products/' + id;
+    return this.http.get<Product>(url,  {
+      withCredentials: true,
+      headers: new HttpHeaders()
+        .set('Content-type', 'text/plain')
+
+    }).pipe(
+      tap(customer => console.log(`fetched product`)),
+      catchError(this.handleError('', new Product()))
+    );
+  }
+
+
+  saveProduct(product: Product) {
+    const body = new HttpParams()
+      .set('productname', product.productname)
+      .set('description', product.description)
+      .set('price', product.price.toString())
+      .set('categories_id', product.categories_id.toString());
+
+    return this.http.post('http://api.hrwebshop.tk/admin/products/' + product.id, body.toString(),
+      {
+        responseType: 'text',
+        withCredentials: true,
+        headers: new HttpHeaders()
+          .set('Content-type', 'application/x-www-form-urlencoded')
+      }
+    );
+  }
+
+
 }

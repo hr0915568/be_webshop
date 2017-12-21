@@ -32,7 +32,7 @@ export class CustomerComponent implements OnInit {
         this.router.navigate(['customers']);
       },
       error => {
-        console.log(error)
+        console.log(error);
       });
 
   }
