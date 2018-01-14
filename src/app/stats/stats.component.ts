@@ -63,7 +63,8 @@ export class StatsComponent implements OnInit {
           for (var j = 0; j < this.radarChartData.length; j++) {
             if(this.radarChartData[j].label === p.categoryName) {
 
-              this.radarChartData[j].data[p.dayofweek-1] = p.count;
+              var index: any = p.dayofweek - 1;
+              this.radarChartData[j].data[index] = p.count;
 
             }
           }
