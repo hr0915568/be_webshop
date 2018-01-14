@@ -23,6 +23,8 @@ import { CustomerComponent } from './customer/customer.component';
 import { ProductComponent } from './product/product.component';
 import {MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { StatsComponent } from './stats/stats.component';
+import {ChartsModule} from 'ng2-charts';
 
 const appRoutes: Routes = [
   // Site routes goes here
@@ -45,6 +47,7 @@ const appRoutes: Routes = [
       { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
       { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
       { path: 'invoices', component: InvoicesComponent, canActivate: [AuthGuard] },
+      { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
     ]
   },
   { path: '**', component: PageNotFoundComponent }
@@ -66,7 +69,8 @@ const appRoutes: Routes = [
     OrdersComponent,
     InvoicesComponent,
     CustomerComponent,
-    ProductComponent
+    ProductComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +79,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     MatSelectModule,
+    ChartsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only

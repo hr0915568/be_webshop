@@ -1,0 +1,27 @@
+<p>
+  Statistics
+</p>
+<div class="row">
+  <div class="col-md-6">
+    <div style="display: block;">
+      <canvas baseChart width="200px" height="200px" style="display: block; height: 539px; width: 539px;"
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+        ></canvas>
+
+      <div style="display: block">
+        <canvas baseChart
+                [datasets]="radarChartData"
+                [labels]="radarChartLabels"
+                [chartType]="radarChartType"
+               ></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6" style="margin-bottom: 10px">
+  </div>
+</div>
