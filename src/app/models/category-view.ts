@@ -1,6 +1,6 @@
 export class CategoryView
 {
-  dayofweek: string;
+  dayofweek: number;
   count: number;
   categoryName: string;
   categoryId: number;
