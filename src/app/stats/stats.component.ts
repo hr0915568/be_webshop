@@ -23,7 +23,7 @@ export class StatsComponent implements OnInit {
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
 
-  public lineChartOptions:any = {
+  public lineChartOptions: any = {
     responsive: true
   };
 
@@ -63,7 +63,7 @@ export class StatsComponent implements OnInit {
           for (var j = 0; j < this.radarChartData.length; j++) {
             if(this.radarChartData[j].label === p.categoryName) {
 
-              var index: any = p.dayofweek - 1;
+              let index = p.dayofweek - 1;
               this.radarChartData[j].data[index] = p.count;
 
             }
